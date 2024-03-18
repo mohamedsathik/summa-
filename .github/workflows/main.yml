@@ -16,7 +16,7 @@ jobs:
               run: sudo apt install docker
             
             - name: Login pannu
-              run: echo ${{ secrets.GH_PAT }} | docker login -u mohamedsathik --password-stdin
+              run: echo ${{ secrets.GH_PAT }} | docker login -u mohamedsathik --password-stdin ghcr.io
 
             - name: build pannu
               run: docker build . -t ghcr.io/mohamedsathik/react
