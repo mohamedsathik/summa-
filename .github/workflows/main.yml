@@ -1,1 +1,25 @@
+name: Update panna poren
 
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+    update_doing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v4
+
+            - name: Install docker
+              run: sudo apt install docker
+            
+            - name: Login pannu
+              run: echo ${{ secrets.GH_PAT }} | docker login -u mohamedsathik --password-stdin
+
+            - name: build pannu
+              run: docker build . -t ghcr.io/mohamedsathik/react
+
+            - name: push to github
+              run: docker push ghcr.io/mohamedsathik/react
